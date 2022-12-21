@@ -93,7 +93,7 @@ heap_t *heap_insert(heap_t **root, int value)
 	if (!root || !(*root))
 	{
 		*root = new_node;
-		return (*root);
+		return (new_node);
 	}
 
 	parent_location = find_parent(*root, new_node);

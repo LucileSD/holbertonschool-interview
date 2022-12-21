@@ -86,7 +86,7 @@ heap_t *find_parent(heap_t *root, heap_t *new)
 */
 heap_t *heap_insert(heap_t **root, int value)
 {
-	heap_t *new_node = NULL, *parent;
+	heap_t *new_node, *parent;
 
 	new_node = binary_tree_node(NULL, value);
 
@@ -102,6 +102,7 @@ heap_t *heap_insert(heap_t **root, int value)
 	while (new_node->parent && new_node->parent->n < new_node->n)
 	{
 		swap(&new_node->parent->n, &new_node->n);
+		new_node = new_node->parent;
 	}
 
 	return (new_node);

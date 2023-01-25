@@ -26,28 +26,28 @@ def print_stat(totalSize, statusCount):
             total_size
             status_count
     """
-    print(f"File size: {totalSize}")
+    print("File size: {}".format(totalSize))
     for status in sorted(statusCount.keys()):
         if statusCount[status] > 0:
             print("{}: {}".format(status, statusCount[status]))
 
-    if __name__ == "__main__":
-        try:
-            for line in stdin:
-                lineCount += 1
-                try:
-                    line = line.split()
-                    size = int(line[-1])
-                    totalSize += size
-                    status = int(line[-2])
-                    if status in statusCount.keys():
-                        statusCount[status] += 1
-                except ValueError:
-                    pass
-                if lineCount % 10 == 0:
-                    print_stat(totalSize, statusCount)
+if __name__ == "__main__":
+    try:
+        for line in stdin:
+            lineCount += 1
+            try:
+                line = line.split()
+                size = int(line[-1])
+                totalSize += size
+                status = int(line[-2])
+                if status in statusCount.keys():
+                    statusCount[status] += 1
+            except ValueError:
+                pass
+            if lineCount % 10 == 0:
+                print_stat(totalSize, statusCount)
 
-        except KeyboardInterrupt:
-            print_stat(totalSize, statusCount)
+    except KeyboardInterrupt:
+        print_stat(totalSize, statusCount)
 
-    print_stat(totalSize, statusCount)
+print_stat(totalSize, statusCount)

@@ -1,54 +1,43 @@
 #!/usr/bin/python3
-"""
-    Log parsing
-"""
-import sys
+"""Log parsing"""
+from sys import stdin
 
+if __name__ == "__main__":
 
-line_count = 0
-total_size = 0
-status_count = {
-    200: 0,
-    301: 0,
-    400: 0,
-    401: 0,
-    403: 0,
-    404: 0,
-    405: 0,
-    500: 0
-}
+    statusCodes = {200: 0, 301: 0, 400: 0, 401: 0,
+                   403: 0, 404: 0, 405: 0, 500: 0}
+    totalSize = 0
 
+    def parseLine(line):
+        """Parses a line of known format"""
+        global totalSize
 
-def print_stat(total_size, status_count):
-    """
-        print stats
-        args:
-            total_size
-            status_count
-    """
-    print(f"File size: {total_size}")
-    for status in sorted(status_count.keys()):
-        if status_count[status] > 0:
-            print("{}: {}".format(status, status_count[status]))
+        try:
+            toks = line.rstrip().split(' ')
+            totalSize += int(toks[-1])
 
+            if int(toks[-2]) in statusCodes:
+                statusCodes[int(toks[-2])] += 1
 
-try:
-    for line in sys.stdin:
-        line_count += 1
+        except BaseException:
+            pass
 
-        line = line.split()
-        status = int(line[7])
-        size = int(line[8])
+    def printStats():
+        """Prints all current stats"""
+        print("File size: {}".format(totalSize))
+        for k in sorted(statusCodes.keys()):
+            if statusCodes[k]:
+                print("{}: {}".format(k, statusCodes[k]))
 
-        total_size += size
-        status_count[status] += 1
+    lineNb = 1
 
-        if line_count % 10 == 0:
-            print_stat(total_size, status_count)
-
-except ValueError:
-    pass
-
-except KeyboardInterrupt:
-    print_stat(total_size, status_count)
-    raise
+    try:
+        for line in stdin:
+            parseLine(line)
+            if lineNb % 10 == 0:
+                printStats()
+            lineNb += 1
+    except KeyboardInterrupt:
+        printStats()
+        raise
+    printStats()

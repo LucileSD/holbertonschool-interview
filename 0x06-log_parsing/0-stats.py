@@ -17,6 +17,7 @@ status_count = {
     500: 0
 }
 
+
 try:
     for line in sys.stdin:
         line_count += 1
@@ -36,10 +37,11 @@ try:
             print(f"File size: {total_size}")
             for status in sorted(status_count.keys()):
                 if status_count[status] > 0:
-                    print(f"{status}: {status_count[status]}")
+                    print("{}: {}".format(status, status_count[status]))
 
 except KeyboardInterrupt:
     print(f"File size: {total_size}")
     for status in sorted(status_count.keys()):
         if status_count[status] > 0:
-            print(f"{status}: {status_count[status]}")
+            print("{}: {}".format(status, status_count[status]))
+    raise

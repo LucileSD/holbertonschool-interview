@@ -4,6 +4,7 @@
 """
 import sys
 
+
 line_count = 0
 total_size = 0
 status_count = {
@@ -35,19 +36,18 @@ try:
     for line in sys.stdin:
         line_count += 1
 
-        try:
-            line = line.split()
-            status = int(line[7])
-            size = int(line[8])
+        line = line.split()
+        status = int(line[7])
+        size = int(line[8])
 
-            total_size += size
-            status_count[status] += 1
-
-        except ValueError:
-            continue
+        total_size += size
+        status_count[status] += 1
 
         if line_count % 10 == 0:
             print_stat(total_size, status_count)
+
+except ValueError:
+    pass
 
 except KeyboardInterrupt:
     print_stat(total_size, status_count)

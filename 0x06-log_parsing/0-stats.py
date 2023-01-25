@@ -6,9 +6,9 @@ from sys import stdin
 
 
 if __name__ == "__main__":
-    line_count = 0
-    total_size = 0
-    status_count = {
+    lineCount = 0
+    totalSize = 0
+    statusCount = {
         200: 0,
         301: 0,
         400: 0,
@@ -19,37 +19,34 @@ if __name__ == "__main__":
         500: 0
     }
 
-    def print_stat(total_size, status_count):
+    def print_stat(totalSize, statusCount):
         """
             print stats
             args:
                 total_size
                 status_count
         """
-        print(f"File size: {total_size}")
-        for status in sorted(status_count.keys()):
-            if status_count[status] > 0:
-                print("{}: {}".format(status, status_count[status]))
+        print(f"File size: {totalSize}")
+        for status in sorted(statusCount.keys()):
+            if statusCount[status] > 0:
+                print("{}: {}".format(status, statusCount[status]))
 
     try:
         for line in stdin:
-            line_count += 1
-
+            lineCount += 1
             line = line.split()
             status = int(line[7])
             size = int(line[8])
-
-            total_size += size
-            status_count[status] += 1
-
-            if line_count % 10 == 0:
-                print_stat(total_size, status_count)
+            totalSize += size
+            statusCount[status] += 1
+            if lineCount % 10 == 0:
+                print_stat(totalSize, statusCount)
 
     except ValueError:
         pass
 
     except KeyboardInterrupt:
-        print_stat(total_size, status_count)
+        print_stat(totalSize, statusCount)
         raise
 
-    print_stat(total_size, status_count)
+    print_stat(totalSize, statusCount)

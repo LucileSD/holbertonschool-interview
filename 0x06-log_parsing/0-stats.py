@@ -19,7 +19,6 @@ if __name__ == "__main__":
         500: 0
     }
 
-
     def print_stat(total_size, status_count):
         """
             print stats
@@ -31,7 +30,6 @@ if __name__ == "__main__":
         for status in sorted(status_count.keys()):
             if status_count[status] > 0:
                 print("{}: {}".format(status, status_count[status]))
-
 
     try:
         for line in stdin:

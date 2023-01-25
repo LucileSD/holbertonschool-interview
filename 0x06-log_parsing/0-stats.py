@@ -18,6 +18,19 @@ status_count = {
 }
 
 
+def print_stat(total_size, status_count):
+    """
+        print stats
+        args:
+            total_size
+            status_count
+    """
+    print(f"File size: {total_size}")
+    for status in sorted(status_count.keys()):
+        if status_count[status] > 0:
+            print("{}: {}".format(status, status_count[status]))
+
+
 try:
     for line in sys.stdin:
         line_count += 1
@@ -34,14 +47,8 @@ try:
             continue
 
         if line_count % 10 == 0:
-            print(f"File size: {total_size}")
-            for status in sorted(status_count.keys()):
-                if status_count[status] > 0:
-                    print("{}: {}".format(status, status_count[status]))
+            print_stat(total_size, status_count)
 
 except KeyboardInterrupt:
-    print(f"File size: {total_size}")
-    for status in sorted(status_count.keys()):
-        if status_count[status] > 0:
-            print("{}: {}".format(status, status_count[status]))
+    print_stat(total_size, status_count)
     raise

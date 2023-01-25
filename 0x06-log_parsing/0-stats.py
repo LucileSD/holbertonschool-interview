@@ -2,7 +2,7 @@
 """
     Log parsing
 """
-import sys
+from sys import stdin
 
 
 if __name__ == "__main__":
@@ -34,7 +34,7 @@ if __name__ == "__main__":
 
 
     try:
-        for line in sys.stdin:
+        for line in stdin:
             line_count += 1
 
             line = line.split()

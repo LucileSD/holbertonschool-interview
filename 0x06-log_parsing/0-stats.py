@@ -6,6 +6,7 @@ from sys import stdin
 
 
 if __name__ == "__main__":
+
     lineCount = 0
     totalSize = 0
     statusCount = {

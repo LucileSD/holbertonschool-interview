@@ -16,9 +16,9 @@ int check_cycle(listint_t *list)
 	while (haze->next->next && turtle->next)
 	{
 		haze = haze->next->next;
+		turtle = turtle->next;
 		if (haze->n == turtle->n)
 			return (1);
-		turtle = turtle->next;
 	}
 	return (0);
 }

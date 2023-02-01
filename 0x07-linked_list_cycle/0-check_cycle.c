@@ -10,10 +10,7 @@ int check_cycle(listint_t *list)
 	listint_t *turtle = list;
 	listint_t *haze = list;
 
-	if (!list || !list->next)
-		return (0);
-
-	while (haze->next->next)
+	while (haze && haze->next)
 	{
 		haze = haze->next->next;
 		turtle = turtle->next;

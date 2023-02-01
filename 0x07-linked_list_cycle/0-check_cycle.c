@@ -13,7 +13,7 @@ int check_cycle(listint_t *list)
 	if (!list || !list->next || !list->next->next)
 		return (0);
 
-	while (haze->next->next && turtle->next)
+	while (haze->next->next && turtle->next && haze && turtle)
 	{
 		haze = haze->next->next;
 		turtle = turtle->next;

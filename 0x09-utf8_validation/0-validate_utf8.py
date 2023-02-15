@@ -8,23 +8,24 @@ def validUTF8(data):
        args: data: data to check
        return: True if data is valid UTF-8 otherwise False
     """
-    i = 0
-    while i < len(data):
-        if data[i] < 128:
-            n_bytes = 1
-        elif 192 <= data[i] < 224:
-            n_bytes = 2
-        elif 224 <= data[i] < 240:
-            n_bytes = 3
-        elif 240 <= data[i] < 248:
-            n_bytes = 4
-        else:
-            return False
+    n_bytes = 0
+    mask1 = 1 << 7
+    mask2 = 1 << 6
 
-        for j in range(i + 1, i + n_bytes):
-            if j >= len(data) or data[j] < 128 or data[j] >= 192:
+    for num in data:
+        mask = 1 << 7
+        if n_bytes == 0:
+            while mask & num:
+                n_bytes += 1
+                mask = mask >> 1
+
+            if n_bytes == 0:
+                continue
+
+            if n_bytes == 1 or n_bytes > 4:
                 return False
-
-        i += n_bytes
-
-    return True
+        else:
+            if not (num & mask1 and not (num & mask2)):
+                return False
+        n_bytes -= 1
+    return n_bytes == 0

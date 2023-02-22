@@ -1,4 +1,5 @@
 #include "slide_line.h"
+
 /**
 * swap - switch 2 numbers
 * @line: the pointer to the array

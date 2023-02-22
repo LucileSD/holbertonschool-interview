@@ -53,23 +53,6 @@ int find_number(int idx, int size, int *line)
 }
 
 /**
-* reverse - reverse the array
-* @line: the pointer on the array
-* @size: the number of element in the array
-* Return: the reversed array
-*/
-int *reverse(int *line, int size)
-{
-	int idx;
-
-	for (idx = 0; idx < size; idx++, size--)
-	{
-		swap(line, idx, size);
-	}
-	return (line);
-}
-
-/**
 * slide_line - slide & merge an array to the direction represented
 * by direction. direction
 * @line: points to an array of integers
@@ -99,6 +82,9 @@ int slide_line(int *line, size_t size, int direction)
 		}
 	}
 	if (direction == SLIDE_RIGHT)
-		reverse(line, size - 1);
+		for (idx = 0; idx < size; idx++, size--)
+		{
+			swap(line, idx, size);
+		}
 	return (1);
 }

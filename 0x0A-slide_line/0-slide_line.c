@@ -94,7 +94,7 @@ int slide_line(int *line, size_t size, int direction)
 		compare = add(line, idx - 1, compare, size, 1);
 		compare = add(line, idx, compare, size, 0);
 
-		if (line[idx] == 0)
+		if (line[idx] == 0 && compare != 0)
 		{
 			swap(line, idx, compare);
 		}

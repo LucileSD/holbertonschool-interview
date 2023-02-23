@@ -80,10 +80,10 @@ int *reverse(int *line, int size)
 */
 int slide_line(int *line, size_t size, int direction)
 {
+	size_t idx, compare;
+
 	if (!line || (direction != SLIDE_LEFT && direction != SLIDE_RIGHT))
 		return (0);
-
-	size_t idx, compare;
 
 	for (idx = 0; idx < size; idx++)
 	{

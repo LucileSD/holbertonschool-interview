@@ -8,7 +8,7 @@ Given a list of non-negative integers representing the heights of walls with uni
 - Assume that the ends of the list (before index 0 and after index walls[-1]) are not walls, meaning they will not retain water.
 - If the list is empty return 0.
 
-...
+```
 jesse@ubuntu:~/0x10$ cat 0_main.py
 #!/usr/bin/python3
 """
@@ -27,4 +27,4 @@ jesse@ubuntu:~/0x10$ ./0_main.py
 6
 6
 jesse@ubuntu:~/0x10$ 
-...
+```

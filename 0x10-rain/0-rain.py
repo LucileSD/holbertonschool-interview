@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 """0. Rain"""
+
+
 def rain(walls):
     """calculate how many square units of water will be retained
        after it rains
@@ -11,7 +13,7 @@ def rain(walls):
     rain = 0
     other = 0
     x = 0
-    if walls == None:
+    if walls is None:
         return 0
     for number in range(0, len(walls) - 1):
         if walls[number] != 0:
@@ -26,4 +28,3 @@ def rain(walls):
         if walls[number] == 0:
             rain += tmp
     return rain
-

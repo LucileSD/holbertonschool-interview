@@ -9,22 +9,17 @@ def rain(walls):
         walls: list of non-negative integers.
        return: units of water will be retained otherwise 0
     """
-    tmp = 0
     rain = 0
-    other = 0
-    x = 0
-    if walls is None:
-        return 0
+
     for number in range(0, len(walls) - 1):
-        if walls[number] != 0:
-            if walls[number] > tmp:
-                tmp = walls[number]
-            else:
-                other = walls[number] - tmp
-                x = number
-                while (walls[x - 1] == 0):
-                    rain += other
-                    x -= 1
-        if walls[number] == 0:
-            rain += tmp
+        left = walls[number]
+        for l_num in range(number):
+            left = max(left, walls[l_num])
+
+        right = walls[number]
+        for r_num in range(number + 1, len(walls)):
+            right = max(right, walls[r_num])
+
+        rain += min(left, right) - walls[number]
+
     return rain

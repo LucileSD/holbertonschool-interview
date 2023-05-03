@@ -39,7 +39,7 @@ int advanced_binary_recurse(int *array, size_t low, size_t high, int value)
 	}
 	printf("%d\n", array[idx]);
 
-	if (low > high)
+	if (low >= high)
 		return (-1);
 
 	if (array[mid] == value && array[mid - 1] != value)

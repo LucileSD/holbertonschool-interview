@@ -8,24 +8,30 @@
 */
 listint_t *find_listint_loop(listint_t *head)
 {
-	listint_t *tmp, *nextNode;
+	listint_t *turtle, *haze;
 
-	tmp = head;
+	turtle = head;
+	haze = turtle;
 
 	if (!head)
 		return (NULL);
 
-	while (head != NULL)
+	while (turtle && haze && haze->next)
 	{
-		if (head->next == NULL && head->next != tmp)
-			return (NULL);
+		turtle = turtle->next;
+		haze = haze->next->next;
 
-		nextNode = head->next;
-		if (nextNode == tmp)
-			return (head);
-
-		head->next = tmp;
-		head = nextNode;
+		if (turtle == haze)
+		{
+			turtle = head;
+			while (haze->next)
+			{
+				turtle = turtle->next;
+				haze = haze->next;
+				if (turtle == haze)
+					return (turtle);
+			}
+		}
 	}
 
 	return (NULL);

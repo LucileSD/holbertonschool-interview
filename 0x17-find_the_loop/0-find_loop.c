@@ -24,12 +24,12 @@ listint_t *find_listint_loop(listint_t *head)
 		if (turtle == haze)
 		{
 			turtle = head;
-			while (haze->next)
+			while (haze)
 			{
-				turtle = turtle->next;
-				haze = haze->next;
 				if (turtle == haze)
 					return (turtle);
+				turtle = turtle->next;
+				haze = haze->next;
 			}
 		}
 	}

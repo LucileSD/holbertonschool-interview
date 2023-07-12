@@ -26,6 +26,7 @@ List *add_node_end(List **list, char *str)
 
 	if (!list || !*list)
 	{
+		end_node->next = end_node->prev = end_node;
 		(*list) = end_node;
 		return (*list);
 	}
@@ -73,6 +74,7 @@ List *add_node_begin(List **list, char *str)
 
 	if (!list || !*list)
 	{
+		start_node->next = start_node->prev = start_node;
 		(*list) = start_node;
 		return (*list);
 	}

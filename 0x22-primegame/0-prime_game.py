@@ -5,7 +5,7 @@
 
 
 def get_primes(n):
-    """ 
+    """
         get all primes until the limit with Sieve Of Eratosthene
         algorithm
     """

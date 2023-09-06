@@ -18,8 +18,6 @@ def isWinner(x, nums):
     for round in range(0, x):
         nb_of_prime = 0
         limit = nums[round]
-        if (limit == 0):
-            return None
         for num in range(2, limit + 1):
             for modulo in range(2, int(num / 2) + 1):
                 if num % modulo == 0:

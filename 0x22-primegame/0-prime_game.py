@@ -19,16 +19,18 @@ def isWinner(x, nums):
         nb_of_prime = 0
         limit = nums[round]
         for num in range(2, limit + 1):
-            if num == 2 or num == 3:
-                nb_of_prime += 1
             for modulo in range(2, int(num / 2) + 1):
-                if num % modulo != 0:
-                    nb_of_prime += 1
+                if num % modulo == 0:
+                    break
+            else:
+                nb_of_prime += 1
         if nb_of_prime % 2 == 0:
             ben += 1
         else:
             maria += 1
-    if maria > ben:
+    if maria == ben:
+        return None
+    elif maria > ben:
         return 'Maria'
     else:
         return 'Ben'

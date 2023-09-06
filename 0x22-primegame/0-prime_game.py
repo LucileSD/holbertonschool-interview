@@ -9,14 +9,13 @@ def get_primes(n):
         get all primes until the limit with Sieve Of Eratosthene
         algorithm
     """
-    m = n + 1
-    numbers = [True] * m
+    numbers = [True] * (n + 1)
     for i in range(2, int(n ** 0.5 + 1)):
         if numbers[i]:
-            for j in range(i * i, m, i):
+            for j in range(i * i, n + 1, i):
                 numbers[j] = False
     primes = []
-    for i in range(2, m):
+    for i in range(2, n + 1):
         if numbers[i]:
             primes.append(i)
     return len(primes)

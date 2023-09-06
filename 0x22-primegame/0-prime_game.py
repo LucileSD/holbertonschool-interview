@@ -4,6 +4,24 @@
 """
 
 
+def get_primes(n):
+    """ 
+        get all primes until the limit with Sieve Of Eratosthene
+        algorithm
+    """
+    m = n + 1
+    numbers = [True] * m
+    for i in range(2, int(n ** 0.5 + 1)):
+        if numbers[i]:
+            for j in range(i * i, m, i):
+                numbers[j] = False
+    primes = []
+    for i in range(2, m):
+        if numbers[i]:
+            primes.append(i)
+    return len(primes)
+
+
 def isWinner(x, nums):
     """
         function to know who wins at prime game
@@ -18,12 +36,7 @@ def isWinner(x, nums):
     for round in range(0, x):
         nb_of_prime = 0
         limit = nums[round]
-        for num in range(2, limit + 1):
-            for modulo in range(2, int(num / 2) + 1):
-                if num % modulo == 0:
-                    break
-            else:
-                nb_of_prime += 1
+        nb_of_prime = get_primes(limit)
         if nb_of_prime % 2 == 0:
             ben += 1
         else:
